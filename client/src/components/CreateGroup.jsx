@@ -12,7 +12,7 @@ const CreateGroup = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:3000/api/group/create', { name, description }, {
+            const response = await axios.post(`${process.env.VITE_BASE_API_URL}/api/group/create`, { name, description }, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${localStorage.getItem('token')}`

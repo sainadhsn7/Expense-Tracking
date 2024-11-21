@@ -30,7 +30,7 @@ const ExpenseDetails = () => {
                     }
                 };
 
-                const response = await axios.get(`http://localhost:3000/api/expenses/${expenseId}`, config);
+                const response = await axios.get(`${process.env.VITE_BASE_API_URL}/api/expenses/${expenseId}`, config);
                 setExpense(response.data);
                 setStatus(response.data.status);
             } catch (error) {
@@ -50,7 +50,7 @@ const ExpenseDetails = () => {
             }
 
             const response = await axios.put(
-                `http://localhost:3000/api/expenses/${groupId}/update-status/${expenseId}`,
+                `${process.env.VITE_BASE_API_URL}/api/expenses/${groupId}/update-status/${expenseId}`,
                 { status },
                 {
                     headers: {
@@ -85,7 +85,7 @@ const ExpenseDetails = () => {
             formData.append('proof', proof);
 
             const response = await axios.post(
-                `http://localhost:3000/api/expenses/${groupId}/upload-proof/${expenseId}`,
+                `${process.env.VITE_BASE_API_URL}/api/expenses/${groupId}/upload-proof/${expenseId}`,
                 formData,
                 {
                     headers: {
@@ -107,7 +107,7 @@ const ExpenseDetails = () => {
     const handleVerifyProof = async () => {
         try {
             const response = await axios.put(
-                `http://localhost:3000/api/expenses/${groupId}/update-status/${expenseId}`,
+                `${process.env.VITE_BASE_API_URL}/api/expenses/${groupId}/update-status/${expenseId}`,
                 { status: 'verified' },
                 {
                     headers: {
@@ -211,7 +211,7 @@ const ExpenseDetails = () => {
                                 <div className="mt-4">
                                     <label htmlFor="proof-view" className="block text-sm font-medium text-gray-700">Proof</label>
                                     <a
-                                        href={`http://localhost:3000/uploads/${expense.proof}`}
+                                        href={`${process.env.VITE_BASE_API_URL}/uploads/${expense.proof}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="mt-1 block text-blue-600 underline"
@@ -226,7 +226,7 @@ const ExpenseDetails = () => {
                                     <label htmlFor="proof" className="block text-sm font-medium text-gray-700">Proof</label>
                                     {expense.proof ? (
                                         <a
-                                            href={`http://localhost:3000/uploads/${expense.proof}`}
+                                            href={`${process.env.VITE_BASE_API_URL}/uploads/${expense.proof}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="mt-1 block text-blue-600 underline"

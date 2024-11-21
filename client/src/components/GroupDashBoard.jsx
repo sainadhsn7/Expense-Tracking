@@ -30,7 +30,7 @@ const GroupDashboard = () => {
                 };
 
                 // Fetch group details
-                const response = await axios.get(`http://localhost:3000/api/group/details/${groupId}`, config);
+                const response = await axios.get(`${process.env.VITE_BASE_API_URL}/api/group/details/${groupId}`, config);
                 setGroup(response.data);
             } catch (error) {
                 setError('Failed to fetch group details.');
@@ -51,7 +51,7 @@ const GroupDashboard = () => {
                 };
 
                 // Fetch group expenses
-                const response = await axios.get(`http://localhost:3000/api/expenses/group/${groupId}/expenses`, config);
+                const response = await axios.get(`${process.env.VITE_BASE_API_URL}/api/expenses/group/${groupId}/expenses`, config);
                 setExpenses(response.data);
             } catch (error) {
                 setError('Failed to fetch group expenses.');
@@ -65,7 +65,7 @@ const GroupDashboard = () => {
     const handleRemoveMember = async (memberId) => {
         try {
             const response = await axios.post(
-                'http://localhost:3000/api/user/remove-member',
+                `${process.env.VITE_BASE_API_URL}/api/user/remove-member`,
                 { groupId, userId: memberId },
                 {
                     headers: {
@@ -109,7 +109,7 @@ const GroupDashboard = () => {
                 }
             };
 
-            const response = await axios.delete(`http://localhost:3000/api/group/delete/${groupId}`, config);
+            const response = await axios.delete(`${process.env.VITE_BASE_API_URL}/api/group/delete/${groupId}`, config);
             setSuccess(response.data.message);
             navigate(`/user-dashboard/${userId}`);
         } catch (error) {

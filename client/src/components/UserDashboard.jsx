@@ -24,7 +24,7 @@ const UserDashboard = () => {
                 };
 
                 // Fetch the groups
-                const response = await axios.get('http://localhost:3000/api/group/user-groups', config);
+                const response = await axios.get(`${process.env.VITE_BASE_API_URL}/api/group/user-groups`, config);
                 console.log('API Response:', response.data);
 
                 if (Array.isArray(response.data)) {
@@ -72,7 +72,7 @@ const UserDashboard = () => {
                     }
                 };
 
-                await axios.post('http://localhost:3000/api/user/leave-group', { groupId }, config);
+                await axios.post(`${process.env.VITE_BASE_API_URL}/api/user/leave-group`, { groupId }, config);
                 
                 // Update the UI after successful leave
                 setGroups(groups.filter(group => group._id !== groupId));
