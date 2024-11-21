@@ -15,12 +15,12 @@ const CreateExpense = () => {
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
     const currentUserId = localStorage.getItem('userId');
-
+    const apiUrl = import.meta.env.VITE_APP_API_URL;
     useEffect(() => {
         const fetchGroupDetails = async () => {
             try {
                 const response = await axios.get(
-                    `${process.env.VITE_BASE_API_URL}/api/group/details/${groupId}`,
+                    `${apiUrl}/api/group/details/${groupId}`,
                     {
                         headers: {
                             'Authorization': `Bearer ${token}`
@@ -84,7 +84,7 @@ const CreateExpense = () => {
             console.log('Sending expense data:', expenseData); // Log the request payload
 
             const response = await axios.post(
-                `${process.env.VITE_BASE_API_URL}/api/expenses/group/${groupId}/createExpense`,
+                `${apiUrl}/api/expenses/group/${groupId}/createExpense`,
                 expenseData,
                 config
             );

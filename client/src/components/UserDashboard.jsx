@@ -8,7 +8,7 @@ const UserDashboard = () => {
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
-
+    const apiUrl = import.meta.env.VITE_APP_API_URL;
     useEffect(() => {
         const fetchGroups = async () => {
             try {
@@ -24,7 +24,7 @@ const UserDashboard = () => {
                 };
 
                 // Fetch the groups
-                const response = await axios.get(`${process.env.VITE_BASE_API_URL}/api/group/user-groups`, config);
+                const response = await axios.get(`${apiUrl}/api/group/user-groups`, config);
                 console.log('API Response:', response.data);
 
                 if (Array.isArray(response.data)) {
@@ -72,7 +72,7 @@ const UserDashboard = () => {
                     }
                 };
 
-                await axios.post(`${process.env.VITE_BASE_API_URL}/api/user/leave-group`, { groupId }, config);
+                await axios.post(`${apiUrl}/api/user/leave-group`, { groupId }, config);
                 
                 // Update the UI after successful leave
                 setGroups(groups.filter(group => group._id !== groupId));

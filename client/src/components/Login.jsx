@@ -8,14 +8,14 @@ const Login=({})=>{
     const [error, setError]=useState('');
     const navigate=useNavigate();
     const {id}=useParams();
-
+    const apiUrl = import.meta.env.VITE_APP_API_URL;
     const handleSubmit=async(e)=>{
         e.preventDefault();
 
         console.log('Login attempt with email:', email);
 
         try {
-            const response=await axios.post(`${process.env.VITE_BASE_API_URL}/api/auth/login`, {email, password});
+            const response=await axios.post(`${apiUrl}/api/auth/login`, {email, password});
 
             const {token, result}=response.data;
             localStorage.setItem('token', token);

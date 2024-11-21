@@ -15,7 +15,7 @@ const ExpenseDetails = () => {
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
     const groupId = localStorage.getItem('groupId');
-
+    const apiUrl = import.meta.env.VITE_APP_API_URL;
     useEffect(() => {
         const fetchExpenseDetails = async () => {
             try {
@@ -30,7 +30,7 @@ const ExpenseDetails = () => {
                     }
                 };
 
-                const response = await axios.get(`${process.env.VITE_BASE_API_URL}/api/expenses/${expenseId}`, config);
+                const response = await axios.get(`${apiUrl}/api/expenses/${expenseId}`, config);
                 setExpense(response.data);
                 setStatus(response.data.status);
             } catch (error) {
@@ -50,7 +50,7 @@ const ExpenseDetails = () => {
             }
 
             const response = await axios.put(
-                `${process.env.VITE_BASE_API_URL}/api/expenses/${groupId}/update-status/${expenseId}`,
+                `${apiUrl}/api/expenses/${groupId}/update-status/${expenseId}`,
                 { status },
                 {
                     headers: {
@@ -85,7 +85,7 @@ const ExpenseDetails = () => {
             formData.append('proof', proof);
 
             const response = await axios.post(
-                `${process.env.VITE_BASE_API_URL}/api/expenses/${groupId}/upload-proof/${expenseId}`,
+                `${apiUrl}/api/expenses/${groupId}/upload-proof/${expenseId}`,
                 formData,
                 {
                     headers: {
@@ -107,7 +107,7 @@ const ExpenseDetails = () => {
     const handleVerifyProof = async () => {
         try {
             const response = await axios.put(
-                `${process.env.VITE_BASE_API_URL}/api/expenses/${groupId}/update-status/${expenseId}`,
+                `${apiUrl}/api/expenses/${groupId}/update-status/${expenseId}`,
                 { status: 'verified' },
                 {
                     headers: {

@@ -11,11 +11,11 @@ const AddMembers = () => {
     const navigate = useNavigate();
     const { groupId } = useParams();
     const token = localStorage.getItem('token');
-
+    const apiUrl = import.meta.env.VITE_APP_API_URL;
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await axios.get(`${process.env.VITE_BASE_API_URL}/api/user/allUsers`, {
+                const response = await axios.get(`${apiUrl}/api/user/allUsers`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -49,7 +49,7 @@ const AddMembers = () => {
         setSuccess('');
 
         try {
-            const response = await axios.post(`${process.env.VITE_BASE_API_URL}/api/user/add-member`, { email, groupId }, {
+            const response = await axios.post(`${apiUrl}/api/user/add-member`, { email, groupId }, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

@@ -7,12 +7,12 @@ const CreateGroup = () => {
     const [description, setDescription] = useState('');
     const navigate = useNavigate();
     const userId=localStorage.getItem('userId');
-
+    const apiUrl = import.meta.env.VITE_APP_API_URL;
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post(`${process.env.VITE_BASE_API_URL}/api/group/create`, { name, description }, {
+            const response = await axios.post(`${apiUrl}/api/group/create`, { name, description }, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
