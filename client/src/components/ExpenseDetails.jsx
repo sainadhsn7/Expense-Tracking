@@ -211,7 +211,7 @@ const ExpenseDetails = () => {
                                 <div className="mt-4">
                                     <label htmlFor="proof-view" className="block text-sm font-medium text-gray-700">Proof</label>
                                     <a
-                                        href={`${process.env.VITE_BASE_API_URL}/uploads/${expense.proof}`}
+                                        href={`${expense.proof}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="mt-1 block text-blue-600 underline"

@@ -97,7 +97,7 @@ export const uploadExpenseProof = async (req, res) => {
       if (!expense) {
         return res.status(404).json({ message: 'Expense not found' });
       }
-  
+      console.log(result.secure_url);
       expense.proof = result.secure_url;
       await group.save();
   
